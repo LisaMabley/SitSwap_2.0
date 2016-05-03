@@ -6,8 +6,8 @@ app.controller('MainController', ['$http', function($http) {
   var controller = this;
 
   // Init controller variables
-  // controller.requestList = [];
-  // controller.request = {};
+  controller.requestList = [];
+  controller.request = {};
   controller.coop = {name: 'Webster School ECFE'};
   controller.user = {
     first_name: 'Suzanna',
@@ -17,11 +17,11 @@ app.controller('MainController', ['$http', function($http) {
     coop_id: 6
   }
   controller.careRequest = {
-    start_time: new Date("May 13, 2016 15:15:00"),
-    end_time: new Date("May 13, 2016 18:45:00"),
-    requestor_id: 8,
-    caregiver_id: 7,
-    comments: 'Posey will be away at a slumber party. We will be back by Henry\'s bedtime'
+    start_time: new Date("May 19, 2016 18:30:00"),
+    end_time: new Date("May 19, 2016 23:00:00"),
+    requestor_id: 7,
+    caregiver_id: 8,
+    comments: 'All three kids. Will need dinner. Bedtime is 7:30.'
   }
 
   // Init controller functions
@@ -33,17 +33,15 @@ app.controller('MainController', ['$http', function($http) {
     $http.post('/users/add', controller.user);
   }
 
-  // controller.addRequest = function() {
-  controller.test = function() {
+  controller.addRequest = function() {
     $http.post('/requests/add', controller.careRequest);
   }
 
-  // controller.getRequests = function() {
-  //   controller.request = {};
-  //   $http.get('/requests/getAll').then(function(response) {
-  //     controller.requestList = response.data;
-  //   });
-  // }
+  controller.test = function() {
+    $http.get('/requests').then(function(response) {
+      controller.requestList = response.data;
+    });
+  }
   //
   // controller.cancelRequest = function(request) {
   // }

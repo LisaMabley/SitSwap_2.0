@@ -8,6 +8,33 @@ var connectionString = require('../db/connection').connectionString;
 var router = express.Router();
 
 // Routes
+router.get('/', function(request, response) {
+  pg.connect(connectionString, function(err, client, done) {
+    if (err) {
+      console.log('Error connecting to database.');
+
+    } else {
+      var query = client.query('SELECT * FROM requests WHERE completed = false');
+      var results = [];
+
+      query.on('row', function(row) {
+        results.push(row);
+      })
+      
+      query.on('end', function() {
+        response.send(results);
+        done();
+      });
+
+      query.on('error', function(err) {
+        console.log('Error running query', err);
+        response.sendStatus(500);
+        done();
+      });
+    }
+  });
+});
+
 router.post('/add', function(request, response) {
   pg.connect(connectionString, function(err, client, done) {
     if (err) {

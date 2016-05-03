@@ -65,52 +65,31 @@
             <table class="table table-striped">
               <thead>
                 <tr>
-                  <th>Date</th>
-                  <th>Start time</th>
-                  <th>End time</th>
+                  <th>Start</th>
+                  <th>End</th>
                   <th>Requestor</th>
                   <th>Sitter</th>
+                  <th>Comments</th>
                   <th>Actions</th>
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td>1,001</td>
-                  <td>Lorem</td>
-                  <td>ipsum</td>
-                  <td>dolor</td>
-                  <td>sit</td>
-                </tr>
-                <tr>
-                  <td>1,002</td>
-                  <td>amet</td>
-                  <td>consectetur</td>
-                  <td>adipiscing</td>
-                  <td>elit</td>
-                </tr>
-                <tr>
-                  <td>1,003</td>
-                  <td>Integer</td>
-                  <td>nec</td>
-                  <td>odio</td>
-                  <td>Praesent</td>
-                </tr>
-                <tr>
-                  <td>1,003</td>
-                  <td>libero</td>
-                  <td>Sed</td>
-                  <td>cursus</td>
-                  <td>ante</td>
+                <tr ng-repeat="item in main.requestList">
+                  <td>{{item.start_time}}</td>
+                  <td>{{item.end_time}}</td>
+                  <td>{{item.requestor_id}}</td>
+                  <td>{{item.caregiver_id}}</td>
+                  <td>{{item.comments}}</td>
                 </tr>
               </tbody>
             </table>
           </div>
         </div>
-        <footer>
+        <!-- <footer>
           <div class="container">
             <p>Icons made by <a href="http://www.freepik.com" title="Freepik">Freepik</a> from <a href="http://www.flaticon.com" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></p>
           </div>
-        </footer>
+        </footer> -->
       </div>
     </div>
 
