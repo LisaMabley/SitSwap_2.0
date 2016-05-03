@@ -40,7 +40,16 @@ app.controller('MainController', ['$http', function($http) {
   controller.test = function() {
     $http.get('/requests').then(function(response) {
       controller.requestList = response.data;
+      controller.addDisplayDates();
     });
+  }
+
+  controller.addDisplayDates = function() {
+    var formatString = 'dddd, MMMM D, h:mm a';
+    for (var i = 0; i < controller.requestList.length; i++) {
+      controller.requestList[i].startDisplay = moment(controller.requestList[i].start_time).format(formatString);
+      controller.requestList[i].endDisplay = moment(controller.requestList[i].end_time).format(formatString);
+    }
   }
   //
   // controller.cancelRequest = function(request) {

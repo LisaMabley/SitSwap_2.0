@@ -20,6 +20,7 @@
     <!-- Scripts -->
     <script src="vendor/angular/angular.min.js"></script>
     <script src="assets/scripts/client.min.js"></script>
+    <script src="../vendor/moment.min.js"></script>
 
   </head>
 
@@ -56,7 +57,7 @@
 
           <div class="row">
             <div class="col-xs-6 col-sm-3">
-              <button class="btn btn-lg" alt="Place a Request" ng-click="main.test()">Place a Request</button>
+              <button class="btn btn-lg btn-warning" alt="I Need Help" ng-click="main.test()">I Need Help</button>
             </div>
           </div>
 
@@ -75,11 +76,12 @@
               </thead>
               <tbody>
                 <tr ng-repeat="item in main.requestList">
-                  <td>{{item.start_time}}</td>
-                  <td>{{item.end_time}}</td>
-                  <td>{{item.requestor_id}}</td>
+                  <td>{{item.startDisplay}}</td>
+                  <td>{{item.endDisplay}}</td>
+                  <td>{{item.first_name}} {{item.last_name}}</td>
                   <td>{{item.caregiver_id}}</td>
                   <td>{{item.comments}}</td>
+                  <td><button class="btn btn-md btn-primary">I Can Help</button></td>
                 </tr>
               </tbody>
             </table>

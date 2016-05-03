@@ -14,13 +14,13 @@ router.get('/', function(request, response) {
       console.log('Error connecting to database.');
 
     } else {
-      var query = client.query('SELECT * FROM requests WHERE completed = false');
+      var query = client.query('SELECT * FROM requests INNER JOIN users ON requests.requestor_id = users.id WHERE completed = false');
       var results = [];
 
       query.on('row', function(row) {
         results.push(row);
       })
-      
+
       query.on('end', function() {
         response.send(results);
         done();
