@@ -10,11 +10,18 @@ app.controller('MainController', ['$http', function($http) {
   // controller.request = {};
   controller.coop = {name: 'Webster School ECFE'};
   controller.user = {
-    first_name: 'Ryan',
-    last_name: 'Mulcahy',
-    phone: '612-288-1103',
-    email: 'ryanmulcahy@gmail.com',
-    coop_id: 4
+    first_name: 'Suzanna',
+    last_name: 'Altman',
+    phone: '612-517-3409',
+    email: 'suzannaaltman@gmail.com',
+    coop_id: 6
+  }
+  controller.careRequest = {
+    start: 'Saturday at 4pm',
+    end: '11pm',
+    requestor_id: 8,
+    caregiver_id: 7,
+    comments: 'Posey will be away at a slumber party. We will be back by Henry\'s bedtime'
   }
 
   // Init controller functions
@@ -22,9 +29,13 @@ app.controller('MainController', ['$http', function($http) {
     $http.post('/coops/add', controller.coop);
   }
 
-  // controller.addUser = function() {
-  controller.test = function() {
+  controller.addUser = function() {
     $http.post('/users/add', controller.user);
+  }
+
+  // controller.addRequest = function() {
+  controller.test = function() {
+    $http.post('/requests/add', controller.careRequest);
   }
 
   // controller.getRequests = function() {
@@ -32,10 +43,6 @@ app.controller('MainController', ['$http', function($http) {
   //   $http.get('/requests/getAll').then(function(response) {
   //     controller.requestList = response.data;
   //   });
-  // }
-  //
-  // controller.addRequest = function() {
-  //   $http.post('/requests/add', controller.request).then(controller.getRequests());
   // }
   //
   // controller.cancelRequest = function(request) {

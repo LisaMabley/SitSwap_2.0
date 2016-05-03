@@ -12,6 +12,7 @@
     "grunt": "^1.0.1",
     "grunt-contrib-copy": "^1.0.0",
     "grunt-contrib-uglify": "^1.0.1",
+    "moment": "^2.13.0",
     "nodemon": "^1.9.1",
     "passport": "^0.3.2",
     "pg": "^4.5.3"
