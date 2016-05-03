@@ -17,8 +17,8 @@ app.controller('MainController', ['$http', function($http) {
     coop_id: 6
   }
   controller.careRequest = {
-    start: 'Saturday at 4pm',
-    end: '11pm',
+    start_time: new Date("May 13, 2016 15:15:00"),
+    end_time: new Date("May 13, 2016 18:45:00"),
     requestor_id: 8,
     caregiver_id: 7,
     comments: 'Posey will be away at a slumber party. We will be back by Henry\'s bedtime'

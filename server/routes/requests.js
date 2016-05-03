@@ -14,7 +14,7 @@ router.post('/add', function(request, response) {
       console.log('Error connecting to database.');
 
     } else {
-      var query = client.query('INSERT INTO requests (start, stop, requestor_id, caregiver_id, comments) VALUES ($1, $2, $3, $4, $5)', [request.body.start, request.body.end, request.body.requestor_id, request.body.caregiver_id, request.body.comments]);
+      var query = client.query('INSERT INTO requests (start_time, end_time, requestor_id, caregiver_id, comments) VALUES ($1, $2, $3, $4, $5)', [request.body.start_time, request.body.end_time, request.body.requestor_id, request.body.caregiver_id, request.body.comments]);
 
       query.on('end', function() {
         response.sendStatus(200);
