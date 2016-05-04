@@ -1,0 +1,31 @@
+Login screen built and passport added
+Top nav welcome message live
+Log in/out buttons live
+Request input form built and functional
+Nodemailer implemented
+Implement factories
+Your commitments live
+Your requests live
+Finalize front-end design, animations and transitions
+Polish up & optimize project codebase, add useful comments
+QA and user testing. Initial edits
+User testing at Hack the Gap hackathon
+Final QA edits
+Project presentation and deployment
+
+Stretch goals
+Use Angular Services and Angular Routes to make the front-end experience more awesome
+Add feature allowing Users to cancel Requests they have posted.
+Tech requirements: adding button to html, adding delete route on server
+Add feature allowing Users to cancel Requests they have committed to (leaving the Request open again).
+Tech requirements: adding button to html, adding update route on server to remove User assigned as caregiver to a Request, updating client-side JavaScript to process request
+Add feature allowing Users to invite new members to their Coop, and allowing new users to create an account and join an existing Coop.
+Tech requirements: Add new Invitation object to data model and table to database. Add form to accept info and client-side JavaScript to process input. Invitation objects would have three variables: id, email address, and coop id (foreign key)
+Add feature allowing new Users to create a new Coop.
+Tech requirements: Add form to accept info, post route for coops, and client-side JavaScript to process input
+Add feature allowing cooperatives to keep track of and exchange points in exchange for childcare help.
+Tech requirements: add balance variable to User object, point value variable to Request object, and add these to all related views.
+Integrate with an emailing library to send notifications to user upon new request created in their coop, on their request being accepted by someone, and/or reminder notification the afternoon before the specified date.
+Tech requirements: Install and integrate nodemailer
+Add Bootstrap badges in nav displaying number of items in each section
+Tech requirements: Could use simple “COUNT” queries to determine number of outstanding requests a User has, number of open requests exist in their coop, etc. Styling appears to be simple in Bootstrap.
