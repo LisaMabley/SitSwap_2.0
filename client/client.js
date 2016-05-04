@@ -64,7 +64,7 @@ app.controller('OpenController', ['$http', function($http) {
   controller.requestList = [];
 
   controller.getOpenRequests = function() {
-    $http.get('/requests').then(function(response) {
+    $http.get('/requests/open').then(function(response) {
       controller.requestList = addDisplayDates(response.data);
     });
   }

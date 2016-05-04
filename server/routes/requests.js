@@ -8,7 +8,7 @@ var connectionString = require('../db/connection').connectionString;
 var router = express.Router();
 
 // Routes
-router.get('/', function(request, response) {
+router.get('/open', function(request, response) {
   pg.connect(connectionString, function(err, client, done) {
     if (err) {
       console.log('Error connecting to database.');
