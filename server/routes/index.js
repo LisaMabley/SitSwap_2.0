@@ -9,7 +9,7 @@ var coopRouter = require('./coops');
 
 // Index route
 router.get('/', function(request, response) {
-  response.sendFile(path.join(__dirname, '../public/views/index2.html'));
+  response.sendFile(path.join(__dirname, '../public/views/index.html'));
 });
 
 // Direct specific calls to other routers

@@ -19,12 +19,15 @@
 
     <!-- Scripts -->
     <script src="vendor/angular/angular.min.js"></script>
+    <script src="vendor/angular-route/angular-route.min.js"></script>
     <script src="assets/scripts/client.min.js"></script>
-    <script src="../vendor/moment.min.js"></script>
+    <script src="vendor/moment.min.js"></script>
+
+    <base href="/">
 
   </head>
 
-  <body ng-controller="MainController as main">
+  <body ng-controller="IndexController as main">
 
     <nav class="navbar navbar-inverse navbar-fixed-top">
       <div class="container-fluid">
@@ -44,12 +47,9 @@
       <div class="row">
         <div class="col-sm-3 col-md-2 sidebar">
           <ul class="nav nav-sidebar">
-            <li class="active"><a href="#">Coop Overview <span class="sr-only">(current)</span></a></li>
-            <li><a href="#">Open Requests</a></li>
-            <li><a href="#">My Requests</a></li>
-          </ul>
-          <ul class="nav nav-sidebar">
-            <li><a href="">Nav item</a></li>
+            <li class="active"><a href="open">Open Requests</a></li>
+            <li><a href="commitments">My Commitments</a></li>
+            <li><a href="requests">My Requests</a></li>
           </ul>
         </div>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
@@ -61,29 +61,10 @@
             </div>
           </div>
 
-          <h2 class="sub-header">Section title</h2>
-          <div class="table-responsive">
-            <table class="table table-striped">
-              <thead>
-                <tr>
-                  <th>Start</th>
-                  <th>End</th>
-                  <th>Requestor</th>
-                  <th>Comments</th>
-                  <th>Actions</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr ng-repeat="item in main.requestList">
-                  <td>{{item.startDisplay}}</td>
-                  <td>{{item.endDisplay}}</td>
-                  <td>{{item.first_name}} {{item.last_name}}</td>
-                  <td>{{item.comments}}</td>
-                  <td><button class="btn btn-sm btn-primary" ng-click="main.test(item.id)">I Can Help</button></td>
-                </tr>
-              </tbody>
-            </table>
+          <div id="main">
+            <ng-view></ng-view>
           </div>
+
         </div>
         <!-- <footer>
           <div class="container">

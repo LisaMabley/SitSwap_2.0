@@ -1,0 +1,23 @@
+<h2 class="sub-header">Open Requests</h2>
+<div class="table-responsive">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Start</th>
+        <th>End</th>
+        <th>Requestor</th>
+        <th>Comments</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="item in open.requestList">
+        <td>{{item.startDisplay}}</td>
+        <td>{{item.endDisplay}}</td>
+        <td>{{item.first_name}} {{item.last_name}}</td>
+        <td>{{item.comments}}</td>
+        <td><button class="btn btn-sm btn-primary" ng-click="open.assignRequest(item.id)">I Can Help</button></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
