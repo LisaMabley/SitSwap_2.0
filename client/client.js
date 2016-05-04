@@ -86,7 +86,6 @@ app.controller('OpenController', ['$http', function($http) {
 }]);
 
 app.controller('CommitmentController', function(){
-  this.message = 'You are now being controlled by the COMMITMENTS controller';
 });
 
 app.controller('RequestController', function(){

@@ -29,3 +29,6 @@ Integrate with an emailing library to send notifications to user upon new reques
 Tech requirements: Install and integrate nodemailer
 Add Bootstrap badges in nav displaying number of items in each section
 Tech requirements: Could use simple “COUNT” queries to determine number of outstanding requests a User has, number of open requests exist in their coop, etc. Styling appears to be simple in Bootstrap.
+
+Long-range superstretch ideas
+Commitments page: offer withdraw (if request is in future) and complete (if request is in past) based on current date

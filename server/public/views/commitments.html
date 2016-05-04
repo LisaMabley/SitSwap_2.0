@@ -1,4 +1,26 @@
 <h2 class="sub-header">My Commitments</h2>
-<p>
-  {{commitments.message}}
-</p>
+<div class="table-responsive">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Start</th>
+        <th>End</th>
+        <th>Requestor</th>
+        <th>Comments</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="item in commitments.requestList">
+        <td>{{item.startDisplay}}</td>
+        <td>{{item.endDisplay}}</td>
+        <td>{{item.first_name}} {{item.last_name}}</td>
+        <td>{{item.comments}}</td>
+        <td>
+          <!-- <button class="btn btn-sm btn-primary" ng-click="commitments.uncommit(item.id)">Withdraw Offer</button> -->
+          <button class="btn btn-sm btn-primary" ng-click="commitments.setCompleted(item.id)">Completed</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
