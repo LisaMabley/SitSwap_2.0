@@ -17,11 +17,11 @@ app.controller('MainController', ['$http', function($http) {
     coop_id: 6
   }
   controller.careRequest = {
-    start_time: new Date("May 19, 2016 18:30:00"),
-    end_time: new Date("May 19, 2016 23:00:00"),
-    requestor_id: 7,
-    caregiver_id: 8,
-    comments: 'All three kids. Will need dinner. Bedtime is 7:30.'
+    start_time: new Date("May 6, 2016 10:30:00"),
+    end_time: new Date("May 6, 2016 2:00:00"),
+    requestor_id: 8,
+    caregiver_id: 7,
+    comments: 'Mana still has the sniffles, will probably just want to read in bed'
   }
 
   // Init controller functions
@@ -37,6 +37,7 @@ app.controller('MainController', ['$http', function($http) {
     $http.post('/requests/add', controller.careRequest);
   }
 
+  // controller.getOpenRequests = function() {
   controller.test = function() {
     $http.get('/requests').then(function(response) {
       controller.requestList = response.data;
