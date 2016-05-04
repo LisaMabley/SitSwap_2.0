@@ -57,7 +57,7 @@
 
           <div class="row">
             <div class="col-xs-6 col-sm-3">
-              <button class="btn btn-lg btn-warning" alt="I Need Help" ng-click="main.test()">I Need Help</button>
+              <button class="btn btn-lg btn-warning" alt="I Need Help">I Need Help</button>
             </div>
           </div>
 
@@ -69,7 +69,6 @@
                   <th>Start</th>
                   <th>End</th>
                   <th>Requestor</th>
-                  <th>Sitter</th>
                   <th>Comments</th>
                   <th>Actions</th>
                 </tr>
@@ -79,9 +78,8 @@
                   <td>{{item.startDisplay}}</td>
                   <td>{{item.endDisplay}}</td>
                   <td>{{item.first_name}} {{item.last_name}}</td>
-                  <td>{{item.caregiver_id}}</td>
                   <td>{{item.comments}}</td>
-                  <td><button class="btn btn-md btn-primary">I Can Help</button></td>
+                  <td><button class="btn btn-sm btn-primary" ng-click="main.test(item.id)">I Can Help</button></td>
                 </tr>
               </tbody>
             </table>

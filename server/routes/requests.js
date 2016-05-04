@@ -14,7 +14,7 @@ router.get('/', function(request, response) {
       console.log('Error connecting to database.');
 
     } else {
-      var query = client.query('SELECT * FROM requests INNER JOIN users ON requests.requestor_id = users.id WHERE requests.caregiver_id IS NULL;');
+      var query = client.query('SELECT requests.id, requests.start_time, requests.end_time, requests.comments, users.first_name, users.last_name FROM requests INNER JOIN users ON requests.requestor_id = users.id WHERE requests.caregiver_id IS NULL;');
       var results = [];
 
       query.on('row', function(row) {
@@ -22,7 +22,6 @@ router.get('/', function(request, response) {
       })
 
       query.on('end', function() {
-        console.log(results);
         response.send(results);
         done();
       });
@@ -48,6 +47,29 @@ router.post('/add', function(request, response) {
         response.sendStatus(200);
         done();
       });
+
+      query.on('error', function(err) {
+        console.log('Error running query', err);
+        response.sendStatus(500);
+        done();
+      });
+    }
+  });
+});
+
+router.put('/assign', function(request, response) {
+  pg.connect(connectionString, function(err, client, done) {
+    if(err){
+      console.log('Error connecting to database', err);
+      response.sendStatus(500);
+
+    } else {
+      var query = client.query('UPDATE requests SET caregiver_id = $1 WHERE id = $2', [request.body.user_id, request.body.request_id]);
+
+      query.on('end', function() {
+        response.sendStatus(200);
+        done();
+      })
 
       query.on('error', function(err) {
         console.log('Error running query', err);
