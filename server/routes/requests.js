@@ -14,7 +14,64 @@ router.get('/open', function(request, response) {
       console.log('Error connecting to database.');
 
     } else {
+      // TODO: this pulls ALL open requests. Need to refine for just user's coop
       var query = client.query('SELECT requests.id, requests.start_time, requests.end_time, requests.comments, users.first_name, users.last_name FROM requests INNER JOIN users ON requests.requestor_id = users.id WHERE requests.caregiver_id IS NULL;');
+      var results = [];
+
+      query.on('row', function(row) {
+        results.push(row);
+      })
+
+      query.on('end', function() {
+        response.send(results);
+        done();
+      });
+
+      query.on('error', function(err) {
+        console.log('Error running query', err);
+        response.sendStatus(500);
+        done();
+      });
+    }
+  });
+});
+
+router.get('/committed', function(request, response) {
+  pg.connect(connectionString, function(err, client, done) {
+    if (err) {
+      console.log('Error connecting to database.');
+
+    } else {
+      // TODO: rewrite query to target all user's requests
+      var query = client.query('SELECT requests.id, requests.start_time, requests.end_time, requests.comments, users.first_name, users.last_name FROM requests INNER JOIN users ON requests.requestor_id = users.id WHERE requests.caregiver_id IS NULL;');
+      var results = [];
+
+      query.on('row', function(row) {
+        results.push(row);
+      })
+
+      query.on('end', function() {
+        response.send(results);
+        done();
+      });
+
+      query.on('error', function(err) {
+        console.log('Error running query', err);
+        response.sendStatus(500);
+        done();
+      });
+    }
+  });
+});
+
+router.get('/mine', function(request, response) {
+  pg.connect(connectionString, function(err, client, done) {
+    if (err) {
+      console.log('Error connecting to database.');
+
+    } else {
+      // TODO: write this query
+      // var query = client.query('SELECT requests.id, requests.start_time, requests.end_time, requests.comments, users.first_name, users.last_name FROM requests INNER JOIN users ON requests.requestor_id = users.id WHERE requests.caregiver_id IS NULL;');
       var results = [];
 
       query.on('row', function(row) {

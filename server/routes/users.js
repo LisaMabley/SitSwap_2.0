@@ -8,8 +8,9 @@ var connectionString = require('../db/connection').connectionString;
 var router = express.Router();
 
 // Routes
-router.post('/add', function(request, response) {
+router.post('/', function(request, response) {
   pg.connect(connectionString, function(err, client, done) {
+    console.log(request.body);
     if (err) {
       console.log('Error connecting to database.');
 
@@ -19,10 +20,11 @@ router.post('/add', function(request, response) {
         last_name: request.body.last_name,
         phone: request.body.phone,
         email: request.body.email,
-        coop_id: request.body.coop_id
+        coop_id: 6, // TODO: make this work sometime
+        password: request.body.password
       }
 
-      var query = client.query('INSERT INTO users (first_name, last_name, phone, email, coop_id) VALUES ($1, $2, $3, $4, $5)', [user.first_name, user.last_name, user.phone, user.email, user.coop_id]);
+      var query = client.query('INSERT INTO users (first_name, last_name, phone, email, coop_id, password) VALUES ($1, $2, $3, $4, $5, $6)', [user.first_name, user.last_name, user.phone, user.email, user.coop_id, user.password]);
 
       query.on('end', function() {
         response.sendStatus(200);
