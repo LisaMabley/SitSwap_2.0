@@ -5,10 +5,10 @@ var app = angular.module('childcareApp', ['ngRoute']);
 app.config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
   $routeProvider
 
-  // route for the open page
-  .when('/', {
-      templateUrl : 'views/index.html',
-      controller  : 'IndexController',
+  // route for the open requests page
+  .when('/home', {
+      templateUrl : 'views/open.html',
+      controller  : 'OpenController',
       controllerAs : 'open'
   })
 

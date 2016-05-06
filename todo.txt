@@ -1,4 +1,3 @@
-Top nav welcome message live
 Request input form built and functional
 Nodemailer implemented
 Finalize front-end design, animations and transitions
@@ -16,6 +15,7 @@ Add feature allowing new Users to create a new Coop.
 Add feature allowing cooperatives to keep track of and exchange points in exchange for childcare help.
 Integrate with an emailing library to send notifications to user upon new request created in their coop, on their request being accepted by someone, and/or reminder notification the afternoon before the specified date.
 Add Bootstrap badges in nav displaying number of items in each section
+Add user photos
 
 Long-range superstretch ideas
 Commitments page: offer withdraw (if request is in future) and complete (if request is in past) based on current date
