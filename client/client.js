@@ -12,6 +12,7 @@ app.config(['$routeProvider', '$locationProvider', function($routeProvider, $loc
       controllerAs : 'open'
   })
 
+  // route for the open requests page
   .when('/open', {
       templateUrl : 'views/open.html',
       controller  : 'OpenController',
@@ -30,7 +31,15 @@ app.config(['$routeProvider', '$locationProvider', function($routeProvider, $loc
       templateUrl : 'views/myrequests.html',
       controller  : 'RequestController',
       controllerAs : 'requests'
+  })
+
+  // route for the coop page
+  .when('/coop', {
+      templateUrl : 'views/coop.html',
+      controller  : 'CoopController',
+      controllerAs : 'coop'
   });
+
   $locationProvider.html5Mode(true);
 }]);
 
@@ -38,31 +47,14 @@ app.config(['$routeProvider', '$locationProvider', function($routeProvider, $loc
 app.controller('IndexController', ['$http', function($http) {
   var controller = this;
 
-  // Test data
-  // TODO: get for real
-  var loggedInUser = {
-    id: 19,
-    first_name: 'Lisa',
-    last_name: 'Mabley',
-    phone: '1234567890',
-    email: 'q@w',
-    coop_id: 6
+  controller.getUserInfo = function() {
+    $http.get('/users/info').then(function(response) {
+      console.log(response.data);
+      controller.loggedInUser = response.data;
+    });
   }
 
-  // Not working
-  // controller.getUserInfo = function() {
-  //   $http.get('/users/info').then(function(response) {
-  //     controller.loggedInUser = response.data;
-  //   });
-  // }
-
-//   controller.careRequest = {
-//     start_time: new Date("May 6, 2016 10:30:00"),
-//     end_time: new Date("May 6, 2016 2:00:00"),
-//     requestor_id: 8,
-//     caregiver_id: 7,
-//     comments: 'Mana still has the sniffles, will probably just want to read in bed'
-//   }
+  controller.getUserInfo();
 }]);
 
 app.controller('OpenController', ['$http', function($http) {
@@ -141,6 +133,20 @@ app.controller('RequestController', ['$http', function($http) {
   }
 
   controller.getMyRequests();
+}]);
+
+app.controller('CoopController', ['$http', function($http) {
+  var controller = this;
+  controller.memberList = [];
+
+  controller.getMembers = function() {
+    $http.get('/users/coop').then(function(response) {
+      console.log(response.data);
+      controller.memberList = response.data;
+    });
+  }
+
+  controller.getMembers();
 }]);
 
   // Init controller functions

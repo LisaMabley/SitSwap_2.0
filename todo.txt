@@ -1,8 +1,6 @@
 Top nav welcome message live
 Request input form built and functional
 Nodemailer implemented
-Your commitments live
-Your requests live
 Finalize front-end design, animations and transitions
 Polish up & optimize project codebase, add useful comments
 QA and user testing. Initial edits
@@ -12,7 +10,6 @@ Project presentation and deployment
 
 Stretch goals
 Implement factories
-Add feature allowing Users to cancel Requests they have posted.
 Add feature allowing Users to cancel Requests they have committed to (leaving the Request open again).
 Add feature allowing Users to invite new members to their Coop, and allowing new users to create an account and join an existing Coop.
 Add feature allowing new Users to create a new Coop.

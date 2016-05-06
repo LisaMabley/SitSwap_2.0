@@ -23,12 +23,6 @@ router.post('/', passport.authenticate('local', {
   })
 );
 
-// router.get('/success', function(request, response) {
-//   console.log(request.user);
-//   console.log('User is logged in:' , request.isAuthenticated());
-//   response.sendFile(path.join(__dirname, '../public/views/index.html'));
-// });
-
 router.get('/logout', function(request, response){
   console.log('Called logout');
   request.logout();

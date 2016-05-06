@@ -1,0 +1,23 @@
+<h2 class="sub-header">My Commitments</h2>
+<div class="table-responsive">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Phone</th>
+        <th>Email</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="member in coop.memberList">
+        <td>{{member.first_name}} {{member.last_name}}</td>
+        <td>{{member.phone}}</td>
+        <td>{{member.email}}</td>
+        <td>
+          <button class="btn btn-sm btn-primary" ng-click="">Do something</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
