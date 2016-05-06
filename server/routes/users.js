@@ -34,7 +34,7 @@ router.post('/', function(request, response) {
       var query = client.query('INSERT INTO users (first_name, last_name, phone, email, coop_id, password) VALUES ($1, $2, $3, $4, $5, $6)', [user.first_name, user.last_name, user.phone, user.email, user.coop_id, user.password]);
 
       query.on('end', function() {
-        response.sendStatus(200);
+        response.sendFile(path.join(__dirname, '../public/views/index.html'));
         done();
       });
 
