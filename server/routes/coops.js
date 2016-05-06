@@ -9,7 +9,6 @@ var router = express.Router();
 
 // Routes
 router.post('/add', function(request, response) {
-  console.log('Coop router post route', request.body);
   pg.connect(connectionString, function(err, client, done) {
     if (err) {
       console.log('Error connecting to database.');
@@ -19,6 +18,36 @@ router.post('/add', function(request, response) {
 
       query.on('end', function() {
         response.sendStatus(200);
+        done();
+      });
+
+      query.on('error', function(err) {
+        console.log('Error running query', err);
+        response.sendStatus(500);
+        done();
+      });
+    }
+  });
+});
+
+router.get('/name', function(request, response) {
+  var coopId = request.user.coop_id;
+  console.log(coopId);
+  pg.connect(connectionString, function(err, client, done) {
+    if (err) {
+      console.log('Error connecting to database.');
+
+    } else {
+      var query = client.query('SELECT name FROM coops WHERE id = ' + coopId + ';');
+
+      var results = [];
+
+      query.on('row', function(row) {
+        results.push(row);
+      })
+
+      query.on('end', function() {
+        response.send(results);
         done();
       });
 

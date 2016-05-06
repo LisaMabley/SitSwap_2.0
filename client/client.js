@@ -49,9 +49,13 @@ app.controller('IndexController', ['$http', function($http) {
 
   controller.getUserInfo = function() {
     $http.get('/users/info').then(function(response) {
-      console.log(response.data);
       controller.loggedInUser = response.data;
     });
+
+    $http.get('/coops/name').then(function(response) {
+      console.log(response.data[0]);
+      controller.loggedInUser.coopName = response.data[0].name;
+    })
   }
 
   controller.getUserInfo();
