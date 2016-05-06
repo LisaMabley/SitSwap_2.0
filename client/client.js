@@ -36,20 +36,25 @@ app.config(['$routeProvider', '$locationProvider', function($routeProvider, $loc
 
 // Init angular controllers
 app.controller('IndexController', ['$http', function($http) {
+  var controller = this;
 
-  // var controller = this;
+  controller.getUserInfo = function() {
+    console.log('about to get user info');
+    $http.get('/users/info').then(function(response) {
+      console.log('got user info');
+      controller.loggedInUser = response.data;
+    });
 
-  // Init controller variables
-//   controller.request = {};
-//   controller.coop = {name: 'Webster School ECFE'};
-//   controller.user = {
-//     id: 8,
-//     first_name: 'Suzanna',
-//     last_name: 'Altman',
-//     phone: '612-517-3409',
-//     email: 'suzannaaltman@gmail.com',
-//     coop_id: 6
-//   }
+  // controller.logout = function() {
+  //   console.log('Client.js logging out');
+  //   $http.get('/logout').then(function(response) {
+  //   controller.loggedInUser = {};
+  //   });
+  // };
+
+  controller.getUserInfo();
+  }
+
 //   controller.careRequest = {
 //     start_time: new Date("May 6, 2016 10:30:00"),
 //     end_time: new Date("May 6, 2016 2:00:00"),
@@ -89,16 +94,11 @@ app.controller('CommitmentController', function(){
 });
 
 app.controller('RequestController', function(){
-  this.message = 'You are now being controlled by the REQUEST controller';
 });
 
   // Init controller functions
   // controller.addCoop = function() {
   //   $http.post('/coops/add', controller.coop);
-  // }
-  //
-  // controller.addUser = function() {
-  //   $http.post('/users/add', controller.user);
   // }
   //
   // controller.addRequest = function() {

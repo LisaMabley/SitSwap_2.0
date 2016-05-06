@@ -36,8 +36,8 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
-            <li><a>Logged in as <b>{{main.user.first_name}}</b></a></li>
-            <li><a href="#">Log Out</a></li>
+            <li><a>Logged in as <b>{{main.loggedInUser.first_name}}</b></a></li>
+            <li><a href ng-click="main.logout()">Log Out</a></li>
           </ul>
         </div>
       </div>

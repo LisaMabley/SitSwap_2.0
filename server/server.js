@@ -3,12 +3,13 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 var passport = require('passport');
-var localStrategy = require('passport-local');
+var localStrategy = require('passport-local').Strategy;
 var session = require('express-session');
 var pg = require('pg');
 
 // Local Imports
 var dbConnection = require('./db/connection');
+var encryptLibrary = require('../modules/encryption');
 
 // Init express
 var app = express();
@@ -36,24 +37,24 @@ app.use(passport.session());
 // Passport setup
 passport.use('local', new localStrategy({
   passReqToCallback: true,
-  usernameField: 'username'
+  usernameField: 'email'
 },
 
 function(request, email, password, done) {
-  console.log('Called local');
+  // console.log('Called local');
 
   pg.connect(dbConnection.connectionString, function(err, client) {
-    console.log('Called local - PG');
+    // console.log('Called local - PG');
     var user = {};
     var query = client.query('SELECT * FROM users WHERE email = $1', [email]);
 
     query.on('row', function(row) {
-      console.log('User obj', row);
-      console.log('User pw', password);
+      // console.log('User obj', row);
+      // console.log('User pw', password);
 
       user = row;
 
-      if (password == user.password) {
+      if (encryptLibrary.comparePassword(password, user.password)) {
         console.log('Email and password match');
         done(null, user);
 
@@ -70,6 +71,34 @@ function(request, email, password, done) {
     });
   }
 ));
+
+passport.serializeUser(function(user, done) {
+  done(null, user.id);
+});
+
+passport.deserializeUser(function(id, done) {
+  // console.log('Called deserializeUser');
+  pg.connect(dbConnection.connectionString, function(err, client) {
+    // console.log('Called deserializeUser - PG');
+    var user = {};
+    var query = client.query('SELECT * FROM users WHERE id = $1', [id]);
+
+    query.on('row', function(row) {
+      // console.log('User row', row);
+      user = row;
+      done(null, user);
+    });
+
+    query.on('end', function() {
+      client.end();
+    });
+
+    if (err) {
+      console.log(err);
+    }
+
+  });
+});
 
 // Config: router
 app.use('/', index);

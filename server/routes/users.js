@@ -2,12 +2,19 @@
 var express = require('express');
 var path = require('path');
 var pg = require('pg');
+
+// Local imports
 var connectionString = require('../db/connection').connectionString;
+var encryptLibrary = require('../../modules/encryption');
 
 // Init router
 var router = express.Router();
 
 // Routes
+router.get('/info', function(request, response) {
+  response.send(request.user);
+});
+
 router.post('/', function(request, response) {
   pg.connect(connectionString, function(err, client, done) {
     console.log(request.body);
@@ -21,7 +28,7 @@ router.post('/', function(request, response) {
         phone: request.body.phone,
         email: request.body.email,
         coop_id: 6, // TODO: make this work sometime
-        password: request.body.password
+        password: encryptLibrary.encryptPassword(request.body.password)
       }
 
       var query = client.query('INSERT INTO users (first_name, last_name, phone, email, coop_id, password) VALUES ($1, $2, $3, $4, $5, $6)', [user.first_name, user.last_name, user.phone, user.email, user.coop_id, user.password]);

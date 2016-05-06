@@ -1,4 +1,4 @@
-Login screen built and passport added
+Passport functional
 Top nav welcome message live
 Log in/out buttons live
 Request input form built and functional
