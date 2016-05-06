@@ -6,9 +6,9 @@ var publicApi = {
 
   encryptPassword: function(password) {
     var salt = bcrypt.genSaltSync(SALT_WORK_FACTOR);
-    console.log('Produced a salt of', salt);
+    // console.log('Produced a salt of', salt);
     var encryptedPassword = bcrypt.hashSync(password, salt);
-    console.log('Encrypted password', encryptedPassword);
+    // console.log('Encrypted password', encryptedPassword);
     return encryptedPassword;
   },
 

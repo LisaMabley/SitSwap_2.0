@@ -7,8 +7,8 @@ app.config(['$routeProvider', '$locationProvider', function($routeProvider, $loc
 
   // route for the open page
   .when('/', {
-      templateUrl : 'views/open.html',
-      controller  : 'OpenController',
+      templateUrl : 'views/index.html',
+      controller  : 'IndexController',
       controllerAs : 'open'
   })
 
@@ -27,7 +27,7 @@ app.config(['$routeProvider', '$locationProvider', function($routeProvider, $loc
 
   // route for the requests page
   .when('/requests', {
-      templateUrl : 'views/requests.html',
+      templateUrl : 'views/myrequests.html',
       controller  : 'RequestController',
       controllerAs : 'requests'
   });
@@ -38,22 +38,23 @@ app.config(['$routeProvider', '$locationProvider', function($routeProvider, $loc
 app.controller('IndexController', ['$http', function($http) {
   var controller = this;
 
-  controller.getUserInfo = function() {
-    console.log('about to get user info');
-    $http.get('/users/info').then(function(response) {
-      console.log('got user info');
-      controller.loggedInUser = response.data;
-    });
-
-  // controller.logout = function() {
-  //   console.log('Client.js logging out');
-  //   $http.get('/logout').then(function(response) {
-  //   controller.loggedInUser = {};
-  //   });
-  // };
-
-  controller.getUserInfo();
+  // Test data
+  // TODO: get for real
+  var loggedInUser = {
+    id: 19,
+    first_name: 'Lisa',
+    last_name: 'Mabley',
+    phone: '1234567890',
+    email: 'q@w',
+    coop_id: 6
   }
+
+  // Not working
+  // controller.getUserInfo = function() {
+  //   $http.get('/users/info').then(function(response) {
+  //     controller.loggedInUser = response.data;
+  //   });
+  // }
 
 //   controller.careRequest = {
 //     start_time: new Date("May 6, 2016 10:30:00"),
@@ -90,11 +91,57 @@ app.controller('OpenController', ['$http', function($http) {
   controller.getOpenRequests();
 }]);
 
-app.controller('CommitmentController', function(){
-});
+app.controller('CommitmentController', ['$http', function($http) {
+  var controller = this;
+  controller.requestList = [];
 
-app.controller('RequestController', function(){
-});
+  controller.getCommitments = function() {
+    $http.get('/requests/committed').then(function(response) {
+      controller.requestList = addDisplayDates(response.data);
+    });
+  }
+
+  controller.markComplete = function(request_id) {
+    $.ajax({
+      method: 'put',
+      url: '/requests/complete',
+      data: {
+        request_id: request_id
+        }
+
+    }).done(function(response) {
+      controller.getCommitments();
+    });
+  }
+
+  controller.getCommitments();
+}]);
+
+app.controller('RequestController', ['$http', function($http) {
+  var controller = this;
+  controller.requestList = [];
+
+  controller.getMyRequests = function() {
+    $http.get('/requests/mine').then(function(response) {
+      controller.requestList = addDisplayDates(response.data);
+    });
+  }
+
+  controller.cancel = function(request_id) {
+    $.ajax({
+      method: 'delete',
+      url: '/requests/delete',
+      data: {
+        request_id: request_id
+        }
+
+    }).done(function(response) {
+      controller.getMyRequests();
+    });
+  }
+
+  controller.getMyRequests();
+}]);
 
   // Init controller functions
   // controller.addCoop = function() {
