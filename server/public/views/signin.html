@@ -22,33 +22,35 @@
   <body>
 
     <div class="container">
+      <div class="well">
 
-      <form class="form-signin" action="/" method="post">
-        <h2 class="form-signin-heading">Please sign in</h2>
-        <label for="inputEmail" class="sr-only">Email address</label>
-        <input type="email" name="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
-        <label for="inputPassword" class="sr-only">Password</label>
-        <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password" required>
-        <input class="btn btn-lg btn-primary btn-block" type="submit" value="Log In"/>
-      </form>
+        <form class="form-signin" action="/" method="post">
+          <h2 class="form-signin-heading">Please sign in</h2>
+          <label for="inputEmail" class="sr-only">Email address</label>
+          <input type="email" name="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
+          <label for="inputPassword" class="sr-only">Password</label>
+          <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password" required>
+          <input class="btn btn-lg btn-primary btn-block" type="submit" value="Log In"/>
+        </form>
 
-      <!-- TODO: Hide one form or the other  -->
+        <!-- TODO: Hide one form or the other  -->
 
-      <form class="form-register" action="/users" method="post">
-        <h2 class="form-register-heading">Create a new account</h2>
-        <label for="inputFirstname" class="sr-only">First name</label>
-        <input type="text" id="firstname_field" name="first_name" class="form-control" placeholder="First name" required autofocus>
-        <label for="inputLastname" class="sr-only">Last name</label>
-        <input type="text" name="last_name" class="form-control" placeholder="Last name" required autofocus>
-        <label for="inputEmail" class="sr-only">Email address</label>
-        <input type="email" name="email" class="form-control" placeholder="Email address" required autofocus>
-        <label for="inputPhone" class="sr-only">Phone number</label>
-        <input type="phone" name="phone" class="form-control" placeholder="Phone number" autofocus>
-        <label for="inputPassword" class="sr-only">Password</label>
-        <input type="password" id="password_field" name="password" class="form-control" placeholder="Password" required>
-        <input class="btn btn-lg btn-primary btn-block" type="submit" id="register_button" value="Register"/>
-      </form>
+        <form class="form-register" action="/users" method="post">
+          <h2 class="form-register-heading">Create a new account</h2>
+          <label for="inputFirstname" class="sr-only">First name</label>
+          <input type="text" id="firstname_field" name="first_name" class="form-control" placeholder="First name" required autofocus>
+          <label for="inputLastname" class="sr-only">Last name</label>
+          <input type="text" name="last_name" class="form-control" placeholder="Last name" required autofocus>
+          <label for="inputEmail" class="sr-only">Email address</label>
+          <input type="email" name="email" class="form-control" placeholder="Email address" required autofocus>
+          <label for="inputPhone" class="sr-only">Phone number</label>
+          <input type="phone" name="phone" class="form-control" placeholder="Phone number" autofocus>
+          <label for="inputPassword" class="sr-only">Password</label>
+          <input type="password" id="password_field" name="password" class="form-control" placeholder="Password" required>
+          <input class="btn btn-lg btn-primary btn-block" type="submit" id="register_button" value="Register"/>
+        </form>
 
+      </div> <!-- /well -->
     </div> <!-- /container -->
 
   </body>

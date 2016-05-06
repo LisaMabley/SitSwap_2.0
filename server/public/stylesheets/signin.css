@@ -1,7 +1,21 @@
 body {
   padding-top: 40px;
   padding-bottom: 40px;
+  padding-right: 80px;
+  background-image: url("../assets/splash.jpeg");
+  background-size: cover;
   background-color: #eee;
+}
+
+/*TODO: make image scale more attractively for mobile*/
+
+.well {
+  background-color: rgba(200, 200, 200, 0.3);
+  border-radius: 10px;
+  border: 0;
+  max-width: 430px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .form-signin, .form-register {
