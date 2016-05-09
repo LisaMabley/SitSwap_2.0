@@ -2,7 +2,7 @@ body {
   padding-top: 40px;
   padding-bottom: 40px;
   padding-right: 80px;
-  background-image: url("../assets/splash.jpeg");
+  background-image: url("../assets/splash2.jpeg");
   background-size: cover;
   background-color: #eee;
 }
@@ -44,7 +44,7 @@ body {
   border-bottom-left-radius: 0;
 }
 
-.form-register input[type="name"], #firstname_field {
+.form-register input[type="name"], #first_name {
   margin-bottom: -1px;
   border-bottom-right-radius: 0;
   border-bottom-left-radius: 0;
