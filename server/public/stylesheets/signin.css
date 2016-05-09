@@ -10,7 +10,7 @@ body {
 /*TODO: make image scale more attractively for mobile*/
 
 .well {
-  background-color: rgba(200, 200, 200, 0.3);
+  background-color: rgba(200, 200, 200, 0.4);
   border-radius: 10px;
   border: 0;
   max-width: 430px;

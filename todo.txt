@@ -1,6 +1,4 @@
 Datepickers a little less ugly
-Home redirect working
-Fix Mark completed functionality: I get error 'this.callback is not a function'
 Homepage works for newly registered users
 Nodemailer implemented
 Finalize front-end design, animations and transitions

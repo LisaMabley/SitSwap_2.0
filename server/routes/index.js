@@ -24,9 +24,8 @@ router.post('/', passport.authenticate('local', {
 );
 
 router.get('/logout', function(request, response){
-  console.log('Called logout');
   request.logout();
-  response.redirect('/');
+  response.redirect('/'); // This doesn't work
 });
 
 // Direct specific calls to other routers

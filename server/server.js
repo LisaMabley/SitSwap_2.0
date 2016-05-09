@@ -49,8 +49,6 @@ function(request, email, password, done) {
     var query = client.query('SELECT * FROM users WHERE email = $1', [email]);
 
     query.on('row', function(row) {
-      // console.log('User obj', row);
-      // console.log('User pw', password);
 
       user = row;
 
@@ -77,14 +75,11 @@ passport.serializeUser(function(user, done) {
 });
 
 passport.deserializeUser(function(id, done) {
-  // console.log('Called deserializeUser');
   pg.connect(dbConnection.connectionString, function(err, client) {
-    // console.log('Called deserializeUser - PG');
     var user = {};
     var query = client.query('SELECT * FROM users WHERE id = $1', [id]);
 
     query.on('row', function(row) {
-      // console.log('User row', row);
       user = row;
       done(null, user);
     });
