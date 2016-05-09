@@ -1,11 +1,8 @@
-<form class="req-form" action="/req-form" method="post">
+<form class="reqForm" action="/requests/add" method="post">
   <h2 class="form-request-heading">Make a request</h2>
-  <div ng-controller="DatepickerDemoCtrl">
-    <pre>Selected date is: <em>{{dt | date:'fullDate' }}</em></pre>
-    <div style="display:inline-block; min-height:290px;">
-      <uib-datepicker ng-model="dt" class="well well-sm" datepicker-options="options"></uib-datepicker>
-  </div>
-  </div>
-    <label for="comments" class="sr-only">Comments</label>
-    <textarea name="comments" id="comments" lass="form-control" placeholder="Comments" required autofocus>
-  </form>
+  <input ng-model="start_time" name="start_time" type="datetime-local" />
+  <input ng-model="end_time" name="end_time" type="datetime-local" />
+  <label for="comments" class="sr-only">Comments</label>
+  <textarea name="comments" class="form-control" placeholder="Comments"></textarea>
+  <input class="btn btn-lg btn-primary btn-block" type="submit" />
+</form>

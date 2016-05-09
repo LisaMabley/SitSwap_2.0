@@ -23,7 +23,6 @@ function initializeDB() {
       var query = client.query(coopTable + userTable + requestTable);
 
       query.on('end', function() {
-        console.log('Successfully ensured schema exists');
         done();
       });
 

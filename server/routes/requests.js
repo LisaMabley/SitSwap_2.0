@@ -121,12 +121,12 @@ router.post('/add', function(request, response) {
 
     } else {
       var query = client.query(
-        'INSERT INTO requests (start_time, end_time, requestor_id, caregiver_id, comments) ' +
-        'VALUES ($1, $2, $3, $4, $5)',
-        [request.body.start_time, request.body.end_time, request.body.requestor_id, request.body.caregiver_id, request.body.comments]);
+        'INSERT INTO requests (start_time, end_time, requestor_id, comments) ' +
+        'VALUES ($1, $2, $3, $4)',
+        [request.body.start_time, request.body.end_time, request.user.id, request.body.comments]);
 
       query.on('end', function() {
-        response.sendStatus(200);
+        response.redirect('/home');
         done();
       });
 
@@ -146,16 +146,16 @@ router.put('/assign', function(request, response) {
       response.sendStatus(500);
 
     } else {
-      var query = client.query('UPDATE requests SET caregiver_id = $1 WHERE id = $2', [request.body.user_id, request.body.request_id]);
+      var query = client.query('UPDATE requests SET caregiver_id = $1 WHERE id = $2', [request.user.id, request.body.request_id]);
 
       query.on('end', function() {
-        response.sendStatus(200);
+        response.redirect('/home');
         done();
       })
 
       query.on('error', function(err) {
         console.log('Error running query', err);
-        response.sendStatus(500);
+        response.redirect('500');
         done();
       });
     }

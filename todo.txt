@@ -1,4 +1,4 @@
-Request input form built and functional
+Datepickers a little less ugly
 Nodemailer implemented
 Finalize front-end design, animations and transitions
 Polish up & optimize project codebase, add useful comments
@@ -8,6 +8,7 @@ Final QA edits
 Project presentation and deployment
 
 Stretch goals
+Datepickers *much* less ugly
 Implement factories
 Add feature allowing Users to cancel Requests they have committed to (leaving the Request open again).
 Add feature allowing Users to invite new members to their Coop, and allowing new users to create an account and join an existing Coop.

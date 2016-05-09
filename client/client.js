@@ -1,5 +1,6 @@
 // Imports
 var app = angular.module('childcareApp', ['ngRoute']);
+// 'ui.bootstrap'
 
 // Configure routes
 app.config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
@@ -10,6 +11,13 @@ app.config(['$routeProvider', '$locationProvider', function($routeProvider, $loc
       templateUrl : 'views/open.html',
       controller  : 'OpenController',
       controllerAs : 'open'
+  })
+
+  // route for the open requests page
+  .when('/newReq', {
+      templateUrl : 'views/requestform.html',
+      controller  : 'NewRequestController',
+      controllerAs : 'newReq'
   })
 
   // route for the open requests page
@@ -53,12 +61,15 @@ app.controller('IndexController', ['$http', function($http) {
     });
 
     $http.get('/coops/name').then(function(response) {
-      console.log(response.data[0]);
       controller.loggedInUser.coopName = response.data[0].name;
     })
   }
 
   controller.getUserInfo();
+}]);
+
+app.controller('NewRequestController', ['$http', function($http) {
+  // Might need some stuff here
 }]);
 
 app.controller('OpenController', ['$http', function($http) {
@@ -71,13 +82,12 @@ app.controller('OpenController', ['$http', function($http) {
     });
   }
 
-  controller.assignRequest = function(request_id) {
+  controller.assignRequest = function(newRequest) {
     $.ajax({
       method: 'put',
       url: '/requests/assign',
       data: {
-        request_id: request_id,
-        user_id: controller.user.id
+        request_id: newRequest.id
       }
     }).done(function(response) {
       controller.getOpenRequests();

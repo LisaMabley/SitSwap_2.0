@@ -11,12 +11,12 @@
       </tr>
     </thead>
     <tbody>
-      <tr ng-repeat="item in open.requestList">
+      <tr ng-repeat="item in open.requestList track by $index">
         <td>{{item.startDisplay}}</td>
         <td>{{item.endDisplay}}</td>
         <td>{{item.first_name}} {{item.last_name}}</td>
         <td>{{item.comments}}</td>
-        <td><button class="btn btn-sm btn-primary" ng-click="open.assignRequest(item.id)">I Can Help</button></td>
+        <td><button class="btn btn-sm btn-primary" ng-click="open.assignRequest(item)">I Can Help</button></td>
       </tr>
     </tbody>
   </table>
