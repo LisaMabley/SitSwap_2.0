@@ -12,6 +12,7 @@
     "express": "^4.13.4",
     "express-session": "^1.13.0",
     "moment": "^2.13.0",
+    "nodemailer": "^2.3.2",
     "nodemon": "^1.9.1",
     "passport": "^0.3.2",
     "passport-local": "^1.0.0",

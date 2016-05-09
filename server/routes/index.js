@@ -10,6 +10,7 @@ var requestRouter = require('./requests');
 var userRouter = require('./users');
 var coopRouter = require('./coops');
 var homeRouter = require('./home');
+var inviteRouter = require('./invitations');
 
 // Index route
 router.get('/', function(request, response) {
@@ -33,5 +34,6 @@ router.use('/requests', requestRouter);
 router.use('/users', userRouter);
 router.use('/coops', coopRouter);
 router.use('/home', homeRouter);
+router.use('/invitations', inviteRouter);
 
 module.exports = router;

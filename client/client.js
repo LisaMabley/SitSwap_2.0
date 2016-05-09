@@ -13,11 +13,9 @@ app.config(['$routeProvider', '$locationProvider', function($routeProvider, $loc
       controllerAs : 'open'
   })
 
-  // route for the open requests page
+  // route for the new request form
   .when('/newReq', {
       templateUrl : 'views/requestform.html',
-      controller  : 'NewRequestController',
-      controllerAs : 'newReq'
   })
 
   // route for the open requests page
@@ -46,6 +44,13 @@ app.config(['$routeProvider', '$locationProvider', function($routeProvider, $loc
       templateUrl : 'views/coop.html',
       controller  : 'CoopController',
       controllerAs : 'coop'
+  })
+
+  // route for the invite page
+  .when('/invite', {
+      templateUrl : 'views/invites.html',
+      controller  : 'InvitationController',
+      controllerAs : 'invites'
   });
 
   $locationProvider.html5Mode(true);
@@ -66,10 +71,6 @@ app.controller('IndexController', ['$http', function($http) {
   }
 
   controller.getUserInfo();
-}]);
-
-app.controller('NewRequestController', ['$http', function($http) {
-  // Might need some stuff here
 }]);
 
 app.controller('OpenController', ['$http', function($http) {
@@ -108,7 +109,6 @@ app.controller('CommitmentController', ['$http', function($http) {
   }
 
   controller.markComplete = function(request) {
-    console.log('CLIENT JS');
     $.ajax({
       method: 'put',
       url: '/requests/complete',
@@ -157,7 +157,6 @@ app.controller('CoopController', ['$http', function($http) {
 
   controller.getMembers = function() {
     $http.get('/users/coop').then(function(response) {
-      console.log(response.data);
       controller.memberList = response.data;
     });
   }
@@ -165,13 +164,35 @@ app.controller('CoopController', ['$http', function($http) {
   controller.getMembers();
 }]);
 
+app.controller('InvitationController', ['$http', function($http) {
+  var controller = this;
+  controller.inviteList = [];
+
+  controller.getInvitations = function() {
+    $http.get('/invitations').then(function(response) {
+      controller.inviteList = response.data;
+    });
+  }
+
+  controller.delete = function(inv_id) {
+    $.ajax({
+      method: 'delete',
+      url: '/invitations',
+      data: {
+        invite_id: inv_id
+        }
+
+    }).done(function(response) {
+      controller.getInvitations();
+    });
+  }
+
+  controller.getInvitations();
+}]);
+
   // Init controller functions
   // controller.addCoop = function() {
   //   $http.post('/coops/add', controller.coop);
-  // }
-  //
-  // controller.addRequest = function() {
-  //   $http.post('/requests/add', controller.careRequest);
   // }
 
 function addDisplayDates(requestList) {
