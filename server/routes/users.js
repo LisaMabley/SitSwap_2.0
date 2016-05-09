@@ -1,6 +1,5 @@
 // Vendor imports
 var express = require('express');
-var path = require('path');
 var pg = require('pg');
 
 // Local imports
@@ -70,7 +69,7 @@ router.post('/', function(request, response) {
         ' VALUES ($1, $2, $3, $4, $5, $6)', [user.first_name, user.last_name, user.phone, user.email, user.coop_id, user.password]);
 
       query.on('end', function() {
-        response.sendFile(path.join(__dirname, '../public/views/index.html'));
+        response.redirect('/home');
         done();
       });
 

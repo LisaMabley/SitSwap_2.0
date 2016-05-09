@@ -23,7 +23,9 @@ router.get('/open', function(request, response) {
       'FROM requests ' +
       'LEFT JOIN users ' +
       'ON requests.requestor_id = users.id ' +
-      'WHERE requests.caregiver_id IS NULL;'
+      'WHERE requests.caregiver_id IS NULL AND ' +
+      'requests.completed = false AND ' +
+      'requests.requestor_id != ' + request.user.id +';'
     );
 
       var results = [];
@@ -58,7 +60,8 @@ router.get('/committed', function(request, response) {
         'FROM requests ' +
         'INNER JOIN users ' +
         'ON requests.requestor_id = users.id ' +
-        'WHERE requests.caregiver_id = ' + userId + ';');
+        'WHERE requests.completed = false AND ' +
+        'requests.caregiver_id = ' + userId + ';');
 
       var results = [];
 
@@ -92,7 +95,8 @@ router.get('/mine', function(request, response) {
         'FROM requests ' +
         'LEFT JOIN users ' +
         'ON requests.caregiver_id = users.id ' +
-        'WHERE requests.requestor_id = ' + userId + ';');
+        'WHERE requests.completed = false AND ' +
+        'requests.requestor_id = ' + userId + ';');
 
       var results = [];
 
@@ -149,7 +153,7 @@ router.put('/assign', function(request, response) {
       var query = client.query('UPDATE requests SET caregiver_id = $1 WHERE id = $2', [request.user.id, request.body.request_id]);
 
       query.on('end', function() {
-        response.redirect('/home');
+        response.sendStatus(200);
         done();
       })
 
@@ -169,7 +173,7 @@ router.put('/complete', function(request, response) {
       response.sendStatus(500);
 
     } else {
-      var query = client.query('UPDATE requests SET completed = true WHERE id = $1', [request.body.request_id]);
+      var query = client.query('UPDATE requests SET completed = true WHERE id = ' + request.body.request_id + ';');
 
       query.on('end', function() {
         response.sendStatus(200);
@@ -192,7 +196,7 @@ router.delete('/delete', function(request, response) {
       response.sendStatus(500);
 
     } else {
-      var query = client.query('DELETE requests WHERE id = $1', [request.body.request_id]);
+      var query = client.query('DELETE FROM requests WHERE id = $1', [request.body.request_id]);
 
       query.on('end', function() {
         response.sendStatus(200);

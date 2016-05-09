@@ -1,4 +1,7 @@
 Datepickers a little less ugly
+Home redirect working
+Fix Mark completed functionality: I get error 'this.callback is not a function'
+Homepage works for newly registered users
 Nodemailer implemented
 Finalize front-end design, animations and transitions
 Polish up & optimize project codebase, add useful comments
@@ -8,8 +11,9 @@ Final QA edits
 Project presentation and deployment
 
 Stretch goals
+When first date selected, second date matches initially
 Datepickers *much* less ugly
-Implement factories
+Implement factories to download all coop data and uncompleted requests --> faster load times!
 Add feature allowing Users to cancel Requests they have committed to (leaving the Request open again).
 Add feature allowing Users to invite new members to their Coop, and allowing new users to create an account and join an existing Coop.
 Add feature allowing new Users to create a new Coop.
@@ -19,6 +23,7 @@ Add number of kids to request objects
 Integrate with an emailing library to send notifications to user upon new request created in their coop, on their request being accepted by someone, and/or reminder notification the afternoon before the specified date.
 Add Bootstrap badges in nav displaying number of items in each section
 Add user photos
+Create homepage dashboard tallying all coop data
 
 Long-range superstretch ideas
-Commitments page: offer withdraw (if request is in future) and complete (if request is in past) based on current date
+Add offers

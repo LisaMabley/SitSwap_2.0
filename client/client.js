@@ -107,15 +107,17 @@ app.controller('CommitmentController', ['$http', function($http) {
     });
   }
 
-  controller.markComplete = function(request_id) {
+  controller.markComplete = function(request) {
+    console.log('CLIENT JS');
     $.ajax({
       method: 'put',
       url: '/requests/complete',
       data: {
-        request_id: request_id
+        request_id: request.id
         }
 
     }).done(function(response) {
+      console.log('DONE');
       controller.getCommitments();
     });
   }
