@@ -13,6 +13,8 @@ Add feature allowing Users to cancel Requests they have committed to (leaving th
 Add feature allowing Users to invite new members to their Coop, and allowing new users to create an account and join an existing Coop.
 Add feature allowing new Users to create a new Coop.
 Add feature allowing cooperatives to keep track of and exchange points in exchange for childcare help.
+Add address, kids names and ages to user objects
+Add number of kids to request objects
 Integrate with an emailing library to send notifications to user upon new request created in their coop, on their request being accepted by someone, and/or reminder notification the afternoon before the specified date.
 Add Bootstrap badges in nav displaying number of items in each section
 Add user photos
