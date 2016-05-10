@@ -87,7 +87,7 @@ body {
 /*
 New request form
 */
-.reqForm input, .reqForm textarea {
+.reqForm input, .reqForm textarea, .inviteForm input, .inviteForm textarea {
   margin: 8px 0;
 }
 

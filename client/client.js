@@ -79,7 +79,7 @@ app.controller('OpenController', ['$http', function($http) {
 
   controller.getOpenRequests = function() {
     $http.get('/requests/open').then(function(response) {
-      controller.requestList = addDisplayDates(response.data);
+      controller.requestList = addDisplayDatesToRequests(response.data);
     });
   }
 
@@ -104,7 +104,7 @@ app.controller('CommitmentController', ['$http', function($http) {
 
   controller.getCommitments = function() {
     $http.get('/requests/committed').then(function(response) {
-      controller.requestList = addDisplayDates(response.data);
+      controller.requestList = addDisplayDatesToRequests(response.data);
     });
   }
 
@@ -130,7 +130,7 @@ app.controller('RequestController', ['$http', function($http) {
 
   controller.getMyRequests = function() {
     $http.get('/requests/mine').then(function(response) {
-      controller.requestList = addDisplayDates(response.data);
+      controller.requestList = addDisplayDatesToRequests(response.data);
     });
   }
 
@@ -169,12 +169,11 @@ app.controller('InvitationController', ['$http', function($http) {
 
   controller.getInvitations = function() {
     $http.get('/invitations').then(function(response) {
-      controller.inviteList = response.data;
+      controller.inviteList = addDisplayDatesToInvitations(response.data);
     });
   }
 
   controller.delete = function(invite) {
-    console.log('CLIENT JS', invite);
     $.ajax({
       method: 'delete',
       url: '/invitations',
@@ -190,11 +189,22 @@ app.controller('InvitationController', ['$http', function($http) {
   controller.getInvitations();
 }]);
 
-function addDisplayDates(requestList) {
-  var formatString = 'dddd, MMMM D, h:mm a';
+function addDisplayDatesToRequests(requestList) {
   for (var i = 0; i < requestList.length; i++) {
-    requestList[i].startDisplay = moment(requestList[i].start_time).format(formatString);
-    requestList[i].endDisplay = moment(requestList[i].end_time).format(formatString);
+    requestList[i].display_start_time = generateDisplayDate(requestList[i].start_time);
+    requestList[i].display_end_time = generateDisplayDate(requestList[i].start_time);
   }
-  return (requestList);
+  return requestList;
+};
+
+function addDisplayDatesToInvitations(inviteList) {
+  for (var i = 0; i < inviteList.length; i++) {
+    inviteList[i].display_date = generateDisplayDate(inviteList[i].date);
+  }
+  return inviteList;
+};
+
+function generateDisplayDate(date) {
+  var formatString = 'dddd, MMMM D, h:mm a';
+  return moment(date).format(formatString);
 };

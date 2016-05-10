@@ -1,6 +1,7 @@
 // Vendor imports
 var express = require('express');
 var pg = require('pg');
+var passport = require('passport');
 
 // Local imports
 var connectionString = require('../db/connection').connectionString;
@@ -49,7 +50,7 @@ router.get('/coop', function(request, response) {
   });
 });
 
-router.post('/', function(request, response) {
+router.post('/', function(request, response, next) {
   pg.connect(connectionString, function(err, client, done) {
     if (err) {
       console.log('Error connecting to database.');
@@ -69,7 +70,11 @@ router.post('/', function(request, response) {
         ' VALUES ($1, $2, $3, $4, $5, $6)', [user.first_name, user.last_name, user.phone, user.email, user.coop_id, user.password]);
 
       query.on('end', function() {
-        response.redirect('/home');
+        var authFunction = passport.authenticate('local', {
+          successRedirect: '/home',
+          failureRedirect: '/'
+        });
+        authFunction(request, response, next);
         done();
       });
 

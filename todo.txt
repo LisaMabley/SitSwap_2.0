@@ -1,4 +1,5 @@
-Homepage works for newly registered users
+Wrong password message
+Logout doesn't go anywhere
 Stock photos in there
 Finalize front-end design, animations and transitions
 Polish up & optimize project codebase, add useful comments

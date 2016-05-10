@@ -48,7 +48,7 @@ router.post('/', function(request, response) {
       var query = client.query('INSERT INTO invitations (email, date, coop_id) VALUES ($1, $2, $3)', [request.body.email, new Date(), request.user.coop_id]);
 
       query.on('end', function() {
-        response.sendStatus(200);
+        response.redirect('/home');
         done();
       });
 
