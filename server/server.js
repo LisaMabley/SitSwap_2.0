@@ -41,10 +41,8 @@ passport.use('local', new localStrategy({
 },
 
 function(request, email, password, done) {
-  // console.log('Called local');
 
   pg.connect(dbConnection.connectionString, function(err, client) {
-    // console.log('Called local - PG');
     var user = {};
     var query = client.query('SELECT * FROM users WHERE email = $1', [email]);
 
@@ -53,7 +51,6 @@ function(request, email, password, done) {
       user = row;
 
       if (encryptLibrary.comparePassword(password, user.password)) {
-        console.log('Email and password match');
         done(null, user);
 
       } else {

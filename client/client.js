@@ -117,7 +117,6 @@ app.controller('CommitmentController', ['$http', function($http) {
         }
 
     }).done(function(response) {
-      console.log('DONE');
       controller.getCommitments();
     });
   }
@@ -174,12 +173,13 @@ app.controller('InvitationController', ['$http', function($http) {
     });
   }
 
-  controller.delete = function(inv_id) {
+  controller.delete = function(invite) {
+    console.log('CLIENT JS', invite);
     $.ajax({
       method: 'delete',
       url: '/invitations',
       data: {
-        invite_id: inv_id
+        invite_id: invite.id
         }
 
     }).done(function(response) {
@@ -189,11 +189,6 @@ app.controller('InvitationController', ['$http', function($http) {
 
   controller.getInvitations();
 }]);
-
-  // Init controller functions
-  // controller.addCoop = function() {
-  //   $http.post('/coops/add', controller.coop);
-  // }
 
 function addDisplayDates(requestList) {
   var formatString = 'dddd, MMMM D, h:mm a';

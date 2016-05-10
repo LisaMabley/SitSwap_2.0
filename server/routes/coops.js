@@ -32,7 +32,6 @@ router.post('/add', function(request, response) {
 
 router.get('/name', function(request, response) {
   var coopId = request.user.coop_id;
-  console.log(coopId);
   pg.connect(connectionString, function(err, client, done) {
     if (err) {
       console.log('Error connecting to database.');

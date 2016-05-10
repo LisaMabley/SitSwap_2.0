@@ -1,5 +1,3 @@
-<h2 class="sub-header">Open Invitations</h2>
-
 <form class="form-invite" action="/invitations" method="post">
   <h2>Invite friends to join your coop</h2>
   <label for="inputEmail" class="sr-only">Email address</label>
@@ -25,7 +23,8 @@
       <tr ng-repeat="item in invites.inviteList track by $index">
         <td>{{item.email}}</td>
         <td>{{item.date_sent}}</td>
-        <td><button class="btn btn-sm btn-primary" ng-click="invites.delete(item.id)">Cancel Invitation</button></td>
+        <!-- Right now anyone in a coop can cancel an invitation. OK? Or should it only be the person who sent it? -->
+        <td><button class="btn btn-sm btn-primary" ng-click="invites.delete(item)">Cancel Invitation</button></td>
       </tr>
     </tbody>
   </table>

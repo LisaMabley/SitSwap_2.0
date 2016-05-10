@@ -17,7 +17,7 @@ router.get('/', function(request, response) {
       console.log('Error connecting to database');
 
     } else {
-      var query = client.query('SELECT email, date FROM invitations WHERE coop_id = ' + coop_id + ';');
+      var query = client.query('SELECT * FROM invitations WHERE coop_id = ' + coop_id + ';');
 
       var results = [];
 
@@ -62,7 +62,6 @@ router.post('/', function(request, response) {
 });
 
 router.delete('/', function(request, response) {
-  console.log('INVITATION ROUTER');
   pg.connect(connectionString, function(err, client, done) {
     if(err){
       console.log('Error connecting to database', err);

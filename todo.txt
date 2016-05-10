@@ -1,9 +1,5 @@
-Nodemailer implemented
 Homepage works for newly registered users
-Plus button on my requests page redirects to new request form?
-Plus button on my requests page redirects to new member form?
 Stock photos in there
-
 Finalize front-end design, animations and transitions
 Polish up & optimize project codebase, add useful comments
 QA and user testing. Initial edits
@@ -12,8 +8,11 @@ Final QA edits
 Project presentation and deployment
 
 Stretch goals
+Nodemailer implemented
 When first date selected, second date matches initially
 Datepickers *much* less ugly
+Plus button on my requests page redirects to new request form?
+Plus button on my requests page redirects to new member form?
 Implement factories to download all coop data and uncompleted requests --> faster load times!
 Add feature allowing Users to cancel Requests they have committed to (leaving the Request open again).
 Add feature allowing new Users to create a new Coop.
