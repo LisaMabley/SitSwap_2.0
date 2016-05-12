@@ -4,6 +4,7 @@ var bodyParser = require('body-parser');
 var passport = require('passport');
 var localStrategy = require('passport-local').Strategy;
 var session = require('express-session');
+var pgSession = require('connect-pg-simple')(session);
 var pg = require('pg');
 
 // Local Imports
@@ -23,6 +24,9 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
 app.use(session({
+  store: new pgSession({
+    conString: dbConnection.connectionString
+  }),
   secret: 'garden',
   resave: true,
   saveUninitialized: false,
@@ -53,7 +57,6 @@ function(request, email, password, done) {
         done(null, user);
 
       } else {
-        console.log('Incorrect email or password');
         done(null, false, {message: 'Incorrect email or password.'});
       }
     });
