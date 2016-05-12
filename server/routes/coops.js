@@ -30,6 +30,35 @@ router.post('/add', function(request, response) {
   });
 });
 
+// Routes
+router.post('/addSampleData', function(request, response) {
+
+  var coopNames = ['Elim Church Families', 'Logan Park Neighborhood Co-op', 'Webster School ECFE Coop'];
+
+  for (var i = 0; i < coopNames.length; i++) {
+    
+    pg.connect(connectionString, function(err, client, done) {
+      if (err) {
+        console.log('Error connecting to database.');
+
+      } else {
+        var query = client.query('INSERT INTO coops (name) VALUES ($1)', coopNames[i]);
+
+        query.on('end', function() {
+          response.sendStatus(200);
+          done();
+        });
+
+        query.on('error', function(err) {
+          console.log('Error running query', err);
+          response.sendStatus(500);
+          done();
+        });
+      }
+    });
+  }
+});
+
 router.get('/name', function(request, response) {
   var coopId = request.user.coop_id;
   pg.connect(connectionString, function(err, client, done) {

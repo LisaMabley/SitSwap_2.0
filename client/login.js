@@ -5,10 +5,14 @@ var app = angular.module('loginApp', ['ui.bootstrap']);
 app.controller('LoginController', ['$http', function($http) {
   var controller = this;
 
-  if () {
-    controller.loginFailureAlert = {};
-
-  } else {
-    
+  controller.generateSampleCoopData = function() {
+    $http.post('/coops/addSampleData');
   }
+
+  // if () {
+  //   controller.loginFailureAlert = {};
+  //
+  // } else {
+  //
+  // }
 }]);
