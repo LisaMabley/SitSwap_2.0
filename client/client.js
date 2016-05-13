@@ -192,7 +192,7 @@ app.controller('InvitationController', ['$http', function($http) {
 function addDisplayDatesToRequests(requestList) {
   for (var i = 0; i < requestList.length; i++) {
     requestList[i].display_start_time = generateDisplayDate(requestList[i].start_time);
-    requestList[i].display_end_time = generateDisplayDate(requestList[i].start_time);
+    requestList[i].display_end_time = generateDisplayDate(requestList[i].end_time);
   }
   return requestList;
 };
