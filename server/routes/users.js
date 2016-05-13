@@ -61,7 +61,7 @@ router.post('/', function(request, response, next) {
         last_name: request.body.last_name,
         phone: request.body.phone,
         email: request.body.email,
-        coop_id: 6, // TODO: make this work sometime
+        coop_id: 7, // TODO: make this work sometime
         password: encryptLibrary.encryptPassword(request.body.password)
       }
 
