@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="loginApp">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,7 +9,7 @@
     <meta name="author" content="">
     <link rel="icon" href="../../favicon.ico">
 
-    <title>Coop Care</title>
+    <title>SitSwap</title>
 
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="stylesheets/bootstrap.min.css">
@@ -17,13 +17,17 @@
     <!-- Custom styles for this template -->
     <link rel="stylesheet" href="stylesheets/signin.css">
 
+    <!-- Scripts -->
+    <script src="vendor/angular/angular.min.js"></script>
+    <script src="assets/scripts/login.min.js"></script>
+
   </head>
 
-  <body>
+  <body ng-controller="LoginController as log">
 
     <div class="container">
-      <div class="well" ng-controller="LoginController">
-
+      <div class="well">
+        <!-- {{log.testMessage}}  {{1+2}} -->
         <form class="form-signin" action="/" method="post">
           <h2 class="form-signin-heading">Please sign in</h2>
           <label for="inputEmail" class="sr-only">Email address</label>
@@ -49,7 +53,6 @@
           <input type="password" id="password_field" name="password" class="form-control" placeholder="Password" required>
           <input class="btn btn-lg btn-primary btn-block" type="submit" id="register_button" value="Register"/>
         </form>
-
       </div> <!-- /well -->
     </div> <!-- /container -->
 

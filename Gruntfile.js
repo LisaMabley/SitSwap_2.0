@@ -4,7 +4,7 @@ module.exports = function(grunt) {
     pkg: grunt.file.readJSON('package.json'),
     watch: {
       scripts: {
-        files: ['client/client.js'],
+        files: ['client/client.js', 'client/login.js'],
         tasks: ['uglify', 'copy'],
         options: {
           spawn: false,
@@ -12,14 +12,20 @@ module.exports = function(grunt) {
       },
     },
     uglify: {
-      options: {
-        banner: '/*! <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %> */\n'
+      dynamic_mappings: {
+        files: [
+          {
+            expand: true,     // Enable dynamic expansion.
+            cwd: 'client/',      // Src matches are relative to this path.
+            src: ['**/*.js'], // Actual pattern(s) to match.
+            dest: 'server/public/assets/scripts/',   // Destination path prefix.
+            ext: '.min.js',   // Dest filepaths will have this extension.
+            extDot: 'first'   // Extensions in filenames begin after the first dot
+          },
+        ],
       },
-      build: {
-        src: 'client/client.js',
-        dest: 'server/public/assets/scripts/client.min.js'
-      }
     },
+
     copy: {
       main : {
         files: [
