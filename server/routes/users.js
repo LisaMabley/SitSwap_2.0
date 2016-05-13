@@ -71,8 +71,8 @@ router.post('/', function(request, response, next) {
 
       query.on('end', function() {
         var authFunction = passport.authenticate('local', {
-          successRedirect: '/home',
-          failureRedirect: '/'
+          successRedirect: '/success',
+          failureRedirect: '/failure'
         });
         authFunction(request, response, next);
         done();

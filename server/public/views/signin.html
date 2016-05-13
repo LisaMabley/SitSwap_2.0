@@ -20,22 +20,28 @@
     <!-- Scripts -->
     <script src="vendor/angular/angular.min.js"></script>
     <script src="assets/scripts/login.min.js"></script>
+    <script src="vendor/bootstrap/alert.js"></script>
 
   </head>
 
-  <body ng-controller="LoginController as log">
+  <body>
 
     <div class="container">
-      <div class="well">
-        <!-- {{log.testMessage}}  {{1+2}} -->
-        <form class="form-signin" action="/" method="post">
+      <div class="well" ng-controller="LoginController as login">
+        <form class="form-signin" ng-submit="login.sendLogin()">
           <h2 class="form-signin-heading">Please sign in</h2>
           <label for="inputEmail" class="sr-only">Email address</label>
-          <input type="email" name="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
+          <input ng-model="login.email" type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
           <label for="inputPassword" class="sr-only">Password</label>
-          <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password" required>
+          <input ng-model="login.password" type="password" id="inputPassword" class="form-control" placeholder="Password" required>
           <input class="btn btn-lg btn-primary btn-block" type="submit" value="Log In"/>
         </form>
+
+        <div ng-show="login.showAlert" id="login-fail-alert" class="alert alert-danger alert-dismissible" role="alert">
+          <button type="button" class="close" data-dismiss="alert" ng-click="login.showAlert = false" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <strong>Incorrect email or password.</strong> <br/>
+          Please check your entry and try again.
+        </div>
 
         <!-- TODO: Hide one form or the other  -->
 

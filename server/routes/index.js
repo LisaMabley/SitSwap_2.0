@@ -17,10 +17,17 @@ router.get('/', function(request, response) {
   response.sendFile(path.join(__dirname, '../public/views/signin.html'));
 });
 
+router.get('/failure', function(request, response) {
+  response.send('failure');
+});
+
+router.get('/success', function(request, response) {
+  response.send('success');
+});
+
 router.post('/', passport.authenticate('local', {
-  successRedirect: '/home',
-  // TODO: add failure message to display to user
-  failureRedirect: '/'
+  successRedirect: '/success',
+  failureRedirect: '/failure'
   })
 );
 

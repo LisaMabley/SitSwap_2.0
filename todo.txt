@@ -1,7 +1,8 @@
-Wrong password message
 Polish up & optimize project codebase, add useful comments
 QA and user testing. Initial edits
 User testing at Hack the Gap hackathon
+
+Break out new coop, join an existing coop and login routes
 
 Stretch goals
 Nodemailer implemented
@@ -16,6 +17,7 @@ Add feature allowing new Users to create a new Coop.
 Add feature allowing cooperatives to keep track of and exchange points in exchange for childcare help.
 Add address, kids names and ages to user objects
 Add number of kids to request objects
+Fix error on refresh
 Integrate with an emailing library to send notifications to user upon new request created in their coop, on their request being accepted by someone, and/or reminder notification the afternoon before the specified date.
 Add Bootstrap badges in nav displaying number of items in each section
 Add user photos

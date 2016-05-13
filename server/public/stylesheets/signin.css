@@ -16,6 +16,8 @@ body {
   max-width: 430px;
   margin-left: auto;
   margin-right: auto;
+  left: -300px;
+  position: relative;
 }
 
 .form-signin, .form-register {
